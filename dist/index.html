@@ -12,6 +12,7 @@
         <div class="logo">FM</div>
         <h1>First Motors Shela</h1>
         <p class="subtitle">Review QR Generator</p>
+        <button class="btn btn-secondary" id="toggleAI">AI Review Generator</button>
     </div>
 
     <!-- Staff Input Form -->
@@ -62,6 +63,34 @@
             <textarea id="comments" rows="3" placeholder="Any specific feedback?"></textarea>
         </div>
         <button class="btn" id="generateBtn">Generate Review & QR Code</button>
+    </div>
+
+    <!-- AI Review Generator Section -->
+    <div class="section ai-section hidden" id="aiSection">
+        <h3>AI-Powered SEO Review Generator</h3>
+        <div class="ai-prompt-examples">
+            <h4>Example AI Prompts:</h4>
+            <ul>
+                <li>"emphasize the professionalism and transparency of pricing"</li>
+                <li>"mention the quality of PPF installation and long-term benefits"</li>
+                <li>"focus on the ceramic coating's hydrophobic properties and ease of maintenance"</li>
+                <li>"highlight the attention to detail in denting and painting work"</li>
+                <li>"note the friendly staff and comfortable waiting area"</li>
+            </ul>
+        </div>
+        <div class="form-group">
+            <label for="aiReviewPrompt">Describe what you want the AI to focus on:</label>
+            <textarea id="aiReviewPrompt" rows="3" placeholder="e.g., 'Highlight the excellent customer service and mention specific staff members who helped'"></textarea>
+        </div>
+        <div class="ai-controls">
+            <button class="btn btn-ai" id="generateAIReview">Generate SEO Review with AI</button>
+            <div class="status-indicator status-ready" id="aiGenerateStatus">Ready</div>
+        </div>
+        <div class="ai-preview" id="aiPreview">
+            <h4>Generated Preview:</h4>
+            <div id="aiGeneratedContent" style="white-space: pre-wrap; word-break: break-word; min-height: 80px;"></div>
+        </div>
+        <button class="btn" id="useAIReview">Use This AI Review</button>
     </div>
 
 
@@ -141,7 +170,6 @@
             document.getElementById('reviewView').classList.remove('hidden');
             document.getElementById('samplesSection').classList.add('hidden');
             document.getElementById('toggleAdmin').classList.add('hidden');
-            document.getElementById('aiSection').classList.add('hidden');
             const decodedReview = decodeURIComponent(reviewParam);
             document.getElementById('displayReview').textContent = decodedReview;
             // Setup copy button
@@ -453,11 +481,111 @@
 
 
     
-    // Back to form button from QR display
+    // AI Review Generator JavaScript
+    function generateAIReview(data, prompt) {
+        let review = '★★★★★ ' + data.customerName + "'s Review\\n\\n";
+        review += 'Service: ' + data.service + '\\n';
+        review += 'Car: ' + data.carMake + ' ' + data.carModel + '\\n';
+        if (data.technician) review += 'Technician: ' + data.technician + '\\n';
+        review += 'Rating: ' + data.rating + '/5\\n';
+        if (data.comments) review += 'Comments: ' + data.comments + '\\n';
+        review += '\\nFirst Motors Shela provided excellent premium service including PPF Installation, Ceramic Coating, Denting Painting, and Periodic Service using top brands like XPEL, Garware, GYEON, Gtechniq, and Glasurit. Highly recommend! #FirstMotorsShela\\n\\nFirst Motors Shela • Opposite Orchid Blues Residency, Shela, Ahmedabad\\n#FirstMotorsShela #PPFInstallation #CeramicCoating #DentingPainting #PeriodicService #AutomotiveCare #Ahmedabad #CarCare\\n\\nThe customer specifically requested: ' + prompt;
+        return review;
+    }
+
+    document.getElementById('generateAIReview').addEventListener('click', async () => {
+        const aiPrompt = document.getElementById('aiReviewPrompt').value.trim();
+        if (!aiPrompt) { alert('Please enter an AI prompt'); return; }
+
+        // Update status
+        document.getElementById('aiGenerateStatus').textContent = 'Generating...';
+        document.getElementById('aiGenerateStatus').className = 'status-indicator status-generating';
+
+        try {
+            // Simulate AI processing delay
+            await new Promise(resolve => setTimeout(resolve, 1500));
+
+            // Get form data from the staff form (even if hidden)
+            const customerName = document.getElementById('customerName').value.trim() || "Valued Customer";
+            const carMake = document.getElementById('carMake').value.trim() || "Toyota";
+            const carModel = document.getElementById('carModel').value.trim() || "Fortuner";
+            const service = document.getElementById('service').value || "PPF Installation";
+            const technician = document.getElementById('technician').value.trim() || "Expert Technician";
+            const rating = document.getElementById('rating').value || "5";
+            const comments = document.getElementById('comments').value.trim() || "Great service experience";
+
+            const data = {
+                customerName,
+                carMake,
+                carModel,
+                service,
+                technician,
+                rating: parseInt(rating),
+                comments
+            };
+
+            const aiReview = generateAIReview(data, aiPrompt);
+
+            // Display preview
+            document.getElementById('aiGeneratedContent').textContent = aiReview;
+
+            // Update status
+            document.getElementById('aiGenerateStatus').textContent = 'Ready';
+            document.getElementById('aiGenerateStatus').className = 'status-indicator status-ready';
+
+        } catch (error) {
+            document.getElementById('aiGenerateStatus').textContent = 'Error';
+            document.getElementById('aiGenerateStatus').className = 'status-indicator status-error';
+            alert('Error generating AI review: ' + error.message);
+        }
+    });
+
+    document.getElementById('useAIReview').addEventListener('click', () => {
+        const aiReview = document.getElementById('aiGeneratedContent').textContent;
+        if (!aiReview) { alert('No AI review generated yet'); return; }
+
+        // Generate QR code for the AI review
+        const baseUrl = window.location.origin + window.location.pathname;
+        const qrUrl = baseUrl + '?review=' + encodeURIComponent(aiReview);
+
+        // Use QR server API
+        const qrImg = document.createElement('img');
+        qrImg.src = 'https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=' + encodeURIComponent(qrUrl);
+        qrImg.alt = 'QR Code for Review Page';
+        const qrContainer = document.getElementById('qrCode');
+        qrContainer.innerHTML = '';
+        qrContainer.appendChild(qrImg);
+
+        // Show QR code section and hide AI section
+        document.getElementById('aiSection').classList.add('hidden');
+        document.getElementById('qrDisplay').classList.remove('hidden');
+    });
+
+    // Adjust the backToForm listener to also hide the AI section
     document.getElementById('backToForm').addEventListener('click', () => {
         document.getElementById('qrDisplay').classList.add('hidden');
         document.getElementById('staffForm').classList.remove('hidden');
+        document.getElementById('aiSection').classList.add('hidden'); // hide AI section when going back to form
     });
+
+    // Update the toggleAI listener to hide other sections when showing the AI section, and show the staff form when hiding.
+    document.getElementById('toggleAI').addEventListener('click', function() {
+        const aiSection = document.getElementById('aiSection');
+        if (!aiSection.classList.contains('hidden')) {
+            // AI section is being shown, hide others
+            document.getElementById('staffForm').classList.add('hidden');
+            document.getElementById('qrDisplay').classList.add('hidden');
+            document.getElementById('reviewView').classList.add('hidden');
+        } else {
+            // AI section is being hidden, show the staff form (assuming we came from the staff form)
+            document.getElementById('staffForm').classList.remove('hidden');
+            document.getElementById('qrDisplay').classList.add('hidden');
+            document.getElementById('reviewView').classList.add('hidden');
+        }
+    });
+
+    // Also, we need to ensure that when we are in the review view or QR display and we open the AI section, we hide the current view.
+    // The above toggleAI listener already hides the staff form, QR display, and review view when showing the AI section.
 
 </script>
 </body>
