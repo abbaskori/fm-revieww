@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QR Code for First Motors Shela Review System</title>
+    <style>*{box-sizing:border-box;margin:0;padding:0}body{color:#1d1d1f;background-color:#fff;flex-direction:column;align-items:center;max-width:600px;margin:0 auto;padding:40px;font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,sans-serif;line-height:1.5;display:flex}.header{text-align:center;margin-bottom:40px}.logo{color:#fff;background:linear-gradient(135deg,#ff3b30,#ff9500);border-radius:12px;justify-content:center;align-items:center;width:60px;height:60px;margin:0 auto 20px;font-size:28px;font-weight:700;display:flex}h1{color:#1d1d1f;margin-bottom:12px;font-size:24px;font-weight:600}.subtitle{color:#86868b;font-size:17px}.qr-container{text-align:center;background:#f8f9fa;border-radius:16px;width:100%;max-width:400px;margin-bottom:30px;padding:30px;box-shadow:0 4px 6px #0000000d}.qr-code{background:#fff;border-radius:12px;width:250px;height:250px;padding:20px;display:inline-block;box-shadow:0 2px 8px #0000001a}.instructions{background:#f0f7ff;border:1px solid #dbe4ff;border-radius:12px;width:100%;max-width:500px;padding:24px}.instructions h2{color:#06c;align-items:center;gap:8px;margin-bottom:16px;font-size:20px;display:flex}.instructions h2:before{content:"ℹ️";font-size:24px}.instructions ol{padding-left:20px}.instructions li{color:#1d1d1f;margin-bottom:12px;line-height:1.6}.url-display{word-break:break-all;color:#1d1d1f;background:#f2f2f7;border-radius:8px;margin-top:16px;padding:12px;font-family:SF Mono,Monaco,Courier New,monospace;font-size:14px}.btn{color:#fff;cursor:pointer;letter-spacing:-.5px;background:linear-gradient(135deg,#ff3b30,#ff9500);border:none;border-radius:10px;width:100%;max-width:200px;margin-top:20px;padding:14px 24px;font-size:16px;font-weight:600;transition:all .2s}.btn:hover{transform:translateY(-2px);box-shadow:0 6px 12px #ff3b304d}.btn:active{transform:translateY(0)}.footer{color:#718096;text-align:center;border-top:1px solid #eee;width:100%;max-width:500px;margin-top:40px;padding-top:20px;font-size:14px}</style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="logo">FM</div>
+            <h1>First Motors Shela</h1>
+            <p class="subtitle">Review System QR Code</p>
+        </div>
+        
+        <div class="qr-container">
+            <div class="qr-code" id="qrCode"></div>
+            <div class="url-display" id="urlDisplay">http://localhost:8081/simple_review_page.html</div>
+        </div>
+        
+        <div class="instructions">
+            <h2>How to Use This QR Code:</h2>
+            <ol>
+                <li>Download or print this QR code</li>
+                <li>Place it on table tents, invoices, receipts, or display on iPad in waiting area</li>
+                <li>Customers scan the QR code with their phone camera</li>
+                <li>They'll be taken to the review page where they can:</li>
+                <li>Read the premium keyword-rich review</li>
+                <li>Tap "Copy Review" to copy it to clipboard</li>
+                <li>Be automatically redirected to Google Maps to submit their review</li>
+            </ol>
+        </div>
+        
+        <button class="btn" id="downloadBtn">Download QR Code as PNG</button>
+        
+        <div class="footer">
+            First Motors Shela • Opposite Orchid Blues Residency, Shela, Ahmedabad<br>
+            © 2025 First Motors Shela. All rights reserved.
+        </div>
+    </div>
+
+    <script>
+        // Elements
+        const qrCodeContainer = document.getElementById('qrCode');
+        const urlDisplay = document.getElementById('urlDisplay');
+        const downloadBtn = document.getElementById('downloadBtn');
+        
+        // The URL that the QR code should point to
+        const targetUrl = "http://localhost:8081/simple_review_page.html";
+        
+        // Display the URL
+        urlDisplay.textContent = targetUrl;
+        
+        // Generate QR code using QR Server API
+        function generateQRCode() {
+            qrCodeContainer.innerHTML = `<img src="https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=${encodeURIComponent(targetUrl)}" alt="QR Code for First Motors Shela Review System">`;
+        }
+        
+        // Download QR code as PNG
+        downloadBtn.addEventListener('click', () => {
+            const qrImage = new Image();
+            qrImage.onload = function() {
+                // Create a temporary canvas to convert to PNG
+                const canvas = document.createElement('canvas');
+                canvas.width = qrImage.width;
+                canvas.height = qrImage.height;
+                const ctx = canvas.getContext('2d');
+                ctx.drawImage(qrImage, 0, 0);
+                
+                // Convert to PNG and trigger download
+                canvas.toBlob(function(blob) {
+                    const url = URL.createObjectURL(blob);
+                    const a = document.createElement('a');
+                    a.href = url;
+                    a.download = 'first_motors_shela_review_qr.png';
+                    a.click();
+                    URL.revokeObjectURL(url);
+                }, 'image/png');
+            };
+            qrImage.src = `https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=${encodeURIComponent(targetUrl)}`;
+        });
+        
+        // Generate QR code on load
+        generateQRCode();
+    </script>
+</body>
+</html>
