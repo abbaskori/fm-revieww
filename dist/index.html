@@ -3,53 +3,314 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>First Motors Shela - Review System</title>
-    <style>*{box-sizing:border-box;margin:0;padding:0}body{color:#1d1d1f;background-color:#fff;padding:20px;font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,sans-serif;line-height:1.6}.container{max-width:800px;margin:0 auto}.header{text-align:center;border-bottom:1px solid #e5e5e5;margin-bottom:40px;padding-bottom:20px}.logo{color:#fff;background:linear-gradient(135deg,#ff3b30,#ff9500);border-radius:12px;justify-content:center;align-items:center;width:60px;height:60px;margin:0 auto 20px;font-size:28px;font-weight:700;display:flex}h1{color:#1d1d1f;margin-bottom:12px;font-size:28px;font-weight:600}.subtitle{color:#86868b;font-size:17px}.features{grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px;margin-bottom:40px;display:grid}.feature{background:#f8f9fa;border-radius:16px;padding:24px;transition:transform .2s,box-shadow .2s;box-shadow:0 4px 6px #0000000d}.feature:hover{transform:translateY(-4px);box-shadow:0 8px 16px #0000001a}.feature-icon{color:#fff;background:linear-gradient(135deg,#ff3b30,#ff9500);border-radius:12px;justify-content:center;align-items:center;width:50px;height:50px;margin:0 auto 16px;font-size:24px;display:flex}.feature h3{color:#1d1d1f;text-align:center;margin-bottom:12px;font-size:20px;font-weight:600}.feature p{color:#6e6e73;text-align:center;font-size:15px;line-height:1.5}.buttons{flex-wrap:wrap;justify-content:center;gap:16px;display:flex}.btn{color:#fff;cursor:pointer;text-align:center;letter-spacing:-.5px;background:linear-gradient(135deg,#ff3b30,#ff9500);border:none;border-radius:12px;min-width:180px;padding:16px 24px;font-size:17px;font-weight:600;text-decoration:none;transition:all .2s;display:inline-block}.btn:hover{transform:translateY(-2px);box-shadow:0 8px 16px #ff3b304d}.btn:active{transform:translateY(0)}.btn-secondary{color:#1d1d1f;background:#f2f2f7;border:1px solid #d2d2d7}.btn-secondary:hover{background:#e5e5ea}.footer{text-align:center;color:#718096;border-top:1px solid #eee;margin-top:40px;padding-top:20px;font-size:14px}@media (width<=480px){body{padding:16px}.logo{width:50px;height:50px;font-size:24px}h1{font-size:24px}.buttons{flex-direction:column;align-items:stretch}.btn{width:100%}}</style>
+    <title>First Motors Shela - Review Generator</title>
+    <style>*{box-sizing:border-box;margin:0;padding:0}body{color:#1d1d1f;background:#fafafa;padding:20px;font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,sans-serif;line-height:1.6}.container{max-width:800px;margin:0 auto}.header{text-align:center;margin-bottom:30px}.logo{color:#fff;background:linear-gradient(135deg,#ff3b30,#ff9500);border-radius:12px;justify-content:center;align-items:center;width:60px;height:60px;margin:0 auto 20px;font-size:28px;font-weight:700;display:flex}h1{color:#1d1d1f;margin-bottom:12px;font-size:28px;font-weight:600}.subtitle{color:#86868b;margin-bottom:24px;font-size:17px}.form-section{background:#fff;border-radius:16px;margin-bottom:24px;padding:24px;box-shadow:0 2px 6px #0000000d}.form-section h2{color:#1d1d1f;align-items:center;gap:8px;margin-bottom:16px;font-size:20px;font-weight:600;display:flex}.form-section h2:before{content:"";background:#ff3b30;border-radius:50%;width:4px;height:4px}.form-group{margin-bottom:20px}label{margin-bottom:8px;font-size:15px;font-weight:500;display:block}input,textarea,select{background:#fff;border:1px solid #d2d2d7;border-radius:12px;width:100%;padding:14px 16px;font-size:15px;transition:all .2s}input:focus,textarea:focus,select:focus{border-color:#ff3b30;outline:none;box-shadow:0 0 0 3px #ff3b3033}textarea{resize:vertical;min-height:80px}.rating-group{gap:12px;margin-bottom:16px;display:flex}.star{color:#e2e2e7;cursor:pointer;font-size:28px;transition:all .2s}.star.active,.star:hover{color:#ff3b30;transform:scale(1.1)}.stars-container{direction:rtl;unicode-bidi:bidi-override}.stars-container .star{direction:ltr;unicode-bidi:bidi-override}.btn{color:#fff;cursor:pointer;letter-spacing:-.5px;background:linear-gradient(135deg,#ff3b30,#ff9500);border:none;border-radius:12px;width:100%;max-width:260px;margin-right:12px;padding:16px 24px;font-size:17px;font-weight:600;transition:all .2s;display:inline-block}.btn:hover{transform:translateY(-2px);box-shadow:0 8px 16px #ff3b304d}.btn:active{transform:translateY(0)}.btn-secondary{color:#1d1d1f;background:#f2f2f7;border:1px solid #d2d2d7}.btn-secondary:hover{background:#e5e5ea}.review-box{background:#f8f9fa;border-radius:16px;margin-top:24px;padding:24px;box-shadow:0 2px 6px #0000000d}.review-box h3{color:#1d1d1f;margin-bottom:16px;font-size:20px}#generatedReview{white-space:pre-wrap;word-break:break-word;background:#fff;border:1px solid #e5e5e5;border-radius:10px;min-height:120px;padding:16px}.qr-container{text-align:center;margin:24px 0}.qr-code{background:#fff;border-radius:10px;padding:12px;display:inline-block;box-shadow:0 2px 8px #0000001a}.qr-code img{max-width:200px;height:auto;display:block}.btn-copy{color:#fff;background:#28a745}.btn-copy:hover{background:#218838}.admin-section{border-top:1px solid #eee;margin-top:30px;padding-top:20px}.admin-section h2{color:#1d1d1f;margin-bottom:16px;font-size:20px}.samples-btn{color:#fff;background:#6c757d}.samples-btn:hover{background:#5a6268}.samples-output{background:#f8f9fa;border-radius:12px;max-height:300px;margin-top:16px;padding:16px;overflow-y:auto}.sample-item{border-bottom:1px solid #eee;padding:12px;font-size:14px;line-height:1.4}.sample-item:last-child{border-bottom:none}footer{text-align:center;color:#718096;border-top:1px solid #eee;margin-top:40px;padding-top:20px;font-size:14px}@media (width<=480px){body{padding:16px}.container{max-width:100%}.btn{width:100%;margin-bottom:12px;margin-right:0}.btn:last-child{margin-bottom:0}}</style>
 </head>
 <body>
-    <div class="container">
-        <div class="header">
-            <div class="logo">FM</div>
-            <h1>First Motors Shela</h1>
-            <p class="subtitle">Review Management System</p>
+<div class="container">
+    <div class="header">
+        <div class="logo">FM</div>
+        <h1>First Motors Shela</h1>
+        <p class="subtitle">Review Generator & QR Code</p>
+    </div>
+
+    <div class="form-section">
+        <h2>Your Details</h2>
+        <div class="form-group">
+            <label for="customerName">Your Name</label>
+            <input type="text" id="customerName" placeholder="Enter your full name">
         </div>
-        
-        <div class="features">
-            <div class="feature">
-                <div class="feature-icon">📝</div>
-                <h3>Customer Review Page</h3>
-                <p>Where customers scan QR codes to view, copy, and submit reviews to Google Maps</p>
-            </div>
-            
-            <div class="feature">
-                <div class="feature-icon">📱</div>
-                <h3>QR Code Generator</h3>
-                <p>Create printable QR codes for your waiting area, invoices, and receipts</p>
-            </div>
-            
-            <div class="feature">
-                <div class="feature-icon">⚙️</div>
-                <h3>Admin Management</h3>
-                <p>Collect, track, and manage all customer reviews with analytics and export</p>
-            </div>
+        <div class="form-group">
+            <label for="carMake">Car Make</label>
+            <input type="text" id="carMake" placeholder="e.g., Hyundai, Toyota, BMW">
         </div>
-        
-        <div class="buttons">
-            <a href="simple_review_page.html" class="btn">
-                Customer Review Page
-            </a>
-            <a href="qr_code_generator.html" class="btn btn-secondary">
-                QR Code Generator
-            </a>
-            <a href="apple_review_system.html" class="btn btn-secondary">
-                Admin Management
-            </a>
-        </div>
-        
-        <div class="footer">
-            First Motors Shela • Opposite Orchid Blues Residency, Shela, Ahmedabad<br>
-            © 2025 First Motors Shela. All rights reserved.
+        <div class="form-group">
+            <label for="carModel">Car Model</label>
+            <input type="text" id="carModel" placeholder="e.g., Creta, Fortuner, 3 Series">
         </div>
     </div>
+
+    <div class="form-section">
+        <h2>Service Details</h2>
+        <div class="form-group">
+            <label for="service">Service Received</label>
+            <select id="service">
+                <option value="">Select your service</option>
+                <option value="PPF Installation">Premium PPF Installation</option>
+                <option value="Ceramic Coating">Graphene/Ceramic Coating</option>
+                <option value="Denting Painting">Accident Repair & Paint</option>
+                <option value="Periodic Service">Scheduled Maintenance</option>
+                <option value="Car Wash Detailing">Premium Wash & Detailing</option>
+                <option value="Other">Other Service</option>
+            </select>
+        </div>
+        <div class="form-group" id="otherServiceGroup" style="display:none;">
+            <label for="otherService">Please specify</label>
+            <input type="text" id="otherService" placeholder="What service did you receive?">
+        </div>
+        <div class="form-group">
+            <label for="technician">Technician (Optional)</label>
+            <input type="text" id="technician" placeholder="Who assisted you? (e.g., Rajesh, Amit, Prakash)">
+        </div>
+    </div>
+
+    <div class="form-section">
+        <h2>Your Experience</h2>
+        <div class="form-group">
+            <label>Your Rating</label>
+            <div class="rating-group">
+                <div class="stars-container">
+                    <span class="star" data-rating="1">★</span>
+                    <span class="star" data-rating="2">★</span>
+                    <span class="star" data-rating="3">★</span>
+                    <span class="star" data-rating="4">★</span>
+                    <span class="star" data-rating="5">★</span>
+                </div>
+            </div>
+            <input type="hidden" id="rating" value="0">
+        </div>
+        <div class="form-group">
+            <label for="reviewText">Additional Comments (Optional)</label>
+            <textarea id="reviewText" rows="4" placeholder="What did you love about your service? Any specific details?"></textarea>
+        </div>
+    </div>
+
+    <button class="btn" id="submitBtn">Generate Review & QR Code</button>
+    <button class="btn btn-secondary" id="copyBtn">Copy Review Text</button>
+    <button class="btn btn-secondary" id="generateSamplesBtn">Generate 500 Sample Reviews</button>
+
+    <div id="successMessage" style="display:none; margin-top:24px;">
+        <div class="review-box">
+            <h3>Your Review is Ready!</h3>
+            <div id="generatedReview"></div>
+            <div class="qr-container" id="qrContainer"></div>
+        </div>
+    </div>
+
+    <div class="admin-section">
+        <h2>Sample Reviews (500)</h2>
+        <button class="btn samples-btn" id="loadSamplesBtn">Load First 20 Samples</button>
+        <div class="samples-output" id="samplesOutput"></div>
+    </div>
+
+    <footer>
+        First Motors Shela • Opposite Orchid Blues Residency, Shela, Ahmedabad<br>
+        © 2025 First Motors Shela. All rights reserved.
+    </footer>
+</div>
+
+<script>
+    // Storage
+    const STORAGE_KEY = 'firstMotorsReviews';
+    function initStorage() { if (!localStorage.getItem(STORAGE_KEY)) localStorage.setItem(STORAGE_KEY, JSON.stringify([])); }
+    function getReviews() { return JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]'); }
+    function saveReview(review) { const reviews = getReviews(); reviews.push({...review, id: Date.now()+Math.random(), timestamp: new Date().toISOString()}); localStorage.setItem(STORAGE_KEY, JSON.stringify(reviews)); }
+
+    // Star rating
+    const stars = document.querySelectorAll('.star');
+    const ratingInput = document.getElementById('rating');
+    stars.forEach(star => {
+        star.addEventListener('click', () => {
+            const rating = star.getAttribute('data-rating');
+            ratingInput.value = rating;
+            stars.forEach(s => s.classList.toggle('active', s.getAttribute('data-rating') <= rating));
+        });
+        star.addEventListener('mouseover', () => {
+            const rating = star.getAttribute('data-rating');
+            stars.forEach(s => s.classList.toggle('hover', s.getAttribute('data-rating') <= rating));
+        });
+        star.addEventListener('mouseout', () => stars.forEach(s => s.classList.remove('hover')));
+    });
+
+    // Service other toggle
+    const serviceSelect = document.getElementById('service');
+    const otherServiceGroup = document.getElementById('otherServiceGroup');
+    serviceSelect.addEventListener('change', () => {
+        if (serviceSelect.value === 'Other') { otherServiceGroup.style.display = 'block'; }
+        else { otherServiceGroup.style.display = 'none'; document.getElementById('otherService').value = ''; }
+    });
+
+    // Sample data arrays
+    const serviceTypes = ['Premium PPF Installation','Graphene/Ceramic Coating','Accident Repair & Paint','Scheduled Maintenance','Premium Wash & Detailing'];
+    const carMakes = ['Hyundai','Toyota','BMW','Mercedes-Benz','Honda','Kia','Ford','Volkswagen','Audi','Porsche'];
+    const carModels = {
+        Hyundai:['Creta','Venue','i20','Verna','Tucson','Santa Fe'],
+        Toyota:['Fortuner','Innova','Etios','Yaris','Camry','Corolla'],
+        BMW:['3 Series','5 Series','X1','X3','X5','7 Series'],
+        'Mercedes-Benz':['C-Class','E-Class','S-Class','GLC','GLE','GLS'],
+        Honda:['City','Amaze','WR-V','Jazz','BR-V','CR-V'],
+        Kia:['Seltos','Sonet','Carens','Sportage','Carnival'],
+        Ford:['EcoSport','Endeavour','Figo','Aspire','Freestyle'],
+        Volkswagen:['Polo','Vento','Ameo','Tiguan','Taigun'],
+        Audi:['A3','A4','A6','Q3','Q5','Q7'],
+        Porsche:['Cayenne','Macan','Panamera','911','Taycan']
+    };
+    const technicianNames = ['Rajesh','Amit','Prakash','Vikram','Suresh','Deepak','Manoj','Nilesh','Ankit','Sunil','Dinesh','Harish','Kiran','Rohit','Ganesh'];
+    const feedbackOptions = [
+        'Excellent service, highly professional team','Transparent pricing and great communication','Fixed my car on time, will definitely return',
+        'Outstanding attention to detail','Best service center in Shela area','Staff went above and beyond expectations',
+        'Quality workmanship with genuine parts','Clean facility with comfortable waiting area',
+        'Quick turnaround without compromising quality','Value for money service',
+        'Hydrophobic coating working perfectly after 6 months','PPF installation flawless, no orange peel',
+        'Ceramic coating makes washing effortless','Accident repair invisible, perfect color match',
+        'Periodic service thorough and honest','Detailing made my car look showroom new',
+        'Wheel ceramic coating is a game changer','Glass coating improved visibility in monsoon',
+        'Headlight restoration saved me replacement cost','Engine bay detailing impressed the mechanic'
+    ];
+    const carComments = [
+        'Really verry good and excellent experience',
+        'Excellent service! The staff was highly professional, transparent with pricing, and fixed my car on time. Strongly recommended',
+        'Outstanding denting and painting work on my Fortuner at First Motors, Ahmedabad! The finish is top-notch, looks fresh out of the showroom, and the staff is extremely professional and polite. Highly recommended for quality bodywork!',
+        'Got PPF coating done for my Hyundai Creta. Rajesh walked me through XPEL vs Garware options - went with ultimate plus full body. Finish is insane, edges are invisible.',
+        '9H ceramic coating on my Tata Harrier - Amit explained graphene benefits. 5-layer process, hydrophobic test impressive. Water beads like mercury.',
+        'Bought XUV700, wanted full protection before first scratch. Vikram suggested Garware PPF "made for indian roads". 3 days, loaner car provided.',
+        '9H ceramic on Honda City. Suresh was cool, did not rush me. Hydrophobic effect real, Sunday washes take half the time now.',
+        'XPEL Stealth (matte PPF) on my Compass. Deepak nailed the texture - no orange peel, no weird gloss patches.',
+        'Graphene ceramic on Skoda Slavia. Prakash explained why it handles heat better. Still beads after 6 months.',
+        'Best PPF install in Shela, no debate. XPEL Ultimate Plus on Fortuner. Manoj n team took 3 days, every panel perfect.',
+        'Price compared for Swift ceramic coating. First Motors Shela won on value. Basic 9H package + steam wash.',
+        'Searched "PPF near me Shela" - found these guys. Steam wash first, then Garware PPF on Seltos.',
+        'Graphene coating + PPF front on MG Hector. Ankit managed job, WhatsApp updates daily with photos.',
+        'Full body PPF cost was 15% less than other premium shops for SAME XPEL film.',
+        '9H ceramic coating on my old EcoSport (2017). Dinesh said "we prep like it\\'s new" - and they did.',
+        'XPEL Stealth matte PPF on BMW 3 Series. Harish has luxury car experience, shows.',
+        'Color match on my White Swift - good but not perfect in direct sun. Suresh said "pearlescent is tricky" - fair.',
+        'XUV700 side panel dent + scratch. Manoj did PDR for dent, precision spot repair for scratch.',
+        'Hit median divider - lower control arm bent, fender cracked. Ankit coordinated insurance claim, suspension repair, computerized alignment, OEM paint.',
+        'Parking lot dent on driver door (no paint damage). Sunil did PDR. 45 mins. Dent gone. Charged 800 bucks.',
+        'Full panel respray on 5 year old City (faded clear coat). Kiran prepped properly - sanded, primed, basecoat, clearcoat.',
+        'Major service on Creta (40k km). Rajesh showed me old parts - brake pads, air filter, oil filter.',
+        'Oil change + filter on Harrier. Took 45 mins. Suresh used Castrol Edge 5W30 (spec), not some random brand.',
+        'AC service before summer. Vikram said "gas low, leak detection test first" - found condenser leak.',
+        'Wheel alignment + balancing on Slavia. Prakash showed me before/after printout. Camber was off (hit pothole hard).',
+        'Periodic service on Hector (20k). Nilesh called: "brake fluid 3 years old, suggest DOT 4 replacement" - did it.',
+        'Minor service on Swift. Ganesh did it quick. Only thing: forgot to reset trip meter (petty I know).',
+        'Clutch replacement on EcoSport (65k). Deepak diagnosed slip, quoted OEM Luk kit. 2 days. Clutch feel light, no judder.',
+        'Timing belt + water pump kit on Fortuner (90k). Amit said "do both, labor same" - smart. OEM Gates kit.',
+        'Battery replacement on i20. Suresh load-tested first (was actually alternator issue!). Saved me battery cost.',
+        'Suspension overhaul on Taigun - shocks, mounts, bushes. Manoj showed me cracked bushes. OEM Bilstein replacements.',
+        'Transmission oil change on GLA (Mercedes). Ankit used Fuchs spec oil, proper drain/fill (not flush machine).',
+        'Pre-monsoon checkup on XUV700. Kiran checked wipers, brakes, tyres, lights, underbody. Gave report card.',
+        'Steam wash + interior detailing on Creta. Rohit\\'s team - seats shampooed, carpet extracted, dashboard conditioned.',
+        'Ceramic maintenance wash on my coated Harrier. Prakash used pH-neutral shampoo, 2 bucket method, drying aid.',
+        'Basic wash on Swift. Quick, 300 bucks. But they used same mitt for wheels and paint - told them, they corrected.',
+        'Full interior deep cleaning on Slavia (spilled coffee). Nilesh\\'s team - seats extracted, stains removed, leather conditioned.',
+        'Engine bay detailing on Fortuner (oil leak mess). Deepak covered electrics, degreased, steam cleaned, dressed plastics.',
+        'Headlight restoration on City (yellowed, hazy). Suresh wet sanded, machine polished, UV clear coated.',
+        'Paint correction + ceramic topper on PPF (2 years old). Amit did single-stage machine polish on film, reapplied ceramic booster.',
+        'Water spot removal on black Hector (garage sprinklers). Manoj - acid wash, machine polish, ceramic boost.',
+        'Wheel ceramic coating on Taigun. Ankit - faces, barrels, lug nuts. Brake dust wipes off now.',
+        'Glass coating (all windows) on GLA. Kiran - rain repellent, wipers glide, bugs don\\'t stick.',
+        'Just a premium wash on my daily Swift. But they - vacuumed mats, wiped dash, dressed tyres, cleaned door shuts.'
+    ];
+
+    function generateRandomName() {
+        const firstNames = ['Rahul','Priya','Amit','Sneha','Vikram','Ananya','Rohit','Kavya','Arjun','Diya','Sameer','Neha','Karishma','Varun','Pooja'];
+        const lastNames = ['Sharma','Patel','Singh','Kumar','Gupta','Reddy','Desai','Joshi','Mehta','Agarwal','Bose','Malhotra'];
+        return `${firstNames[Math.floor(Math.random()*firstNames.length)]} ${lastNames[Math.floor(Math.random()*lastNames.length)]}`;
+    }
+
+    function generateReviewText(data) {
+        let review = `★★★★★ ${data.customerName}'s Review\n\n`;
+        review += `Service: ${data.service}\n`;
+        review += `Car: ${data.carMake} ${data.carModel}\n`;
+        if (data.technician) review += `Technician: ${data.technician}\n`;
+        review += `Rating: ${data.rating}/5\n`;
+        if (data.comments) review += `Comments: ${data.comments}\n`;
+        review += `\nFirst Motors Shela provided excellent premium service. Highly recommend! #FirstMotorsShela`;
+        return review;
+    }
+
+    // Form submit
+    document.getElementById('submitBtn').addEventListener('click', () => {
+        const customerName = document.getElementById('customerName').value.trim();
+        const carMake = document.getElementById('carMake').value.trim();
+        const carModel = document.getElementById('carModel').value.trim();
+        const service = document.getElementById('service').value;
+        const otherService = document.getElementById('otherService').value.trim();
+        const technician = document.getElementById('technician').value.trim();
+        const rating = document.getElementById('rating').value;
+        const comments = document.getElementById('reviewText').value.trim();
+
+        if (!customerName) { alert('Please enter your name'); return; }
+        if (!carMake) { alert('Please enter car make'); return; }
+        if (!carModel) { alert('Please enter car model'); return; }
+        if (!service) { alert('Please select a service'); return; }
+        if (service === 'Other' && !otherService) { alert('Please specify your service'); return; }
+        if (rating === '0') { alert('Please give a rating'); return; }
+
+        const serviceText = service === 'Other' ? otherService : service;
+        const reviewText = generateReviewText({customerName, carMake, carModel, service: serviceText, technician, rating: parseInt(rating), comments});
+
+        document.getElementById('generatedReview').textContent = reviewText;
+        document.getElementById('successMessage').style.display = 'block';
+
+        // Generate QR code for the review text
+        const qrContainer = document.getElementById('qrContainer');
+        qrContainer.innerHTML = `<img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(reviewText)}" alt="QR Code for Review">`;
+
+        // Save review
+        saveReview({customerName, carMake, carModel, service: serviceText, technician, rating: parseInt(rating), comments, reviewText});
+    });
+
+    // Copy button
+    document.getElementById('copyBtn').addEventListener('click', async () => {
+        const reviewText = document.getElementById('generatedReview').textContent;
+        if (!reviewText) { alert('No review to copy'); return; }
+        try {
+            await navigator.clipboard.writeText(reviewText);
+            const original = document.getElementById('copyBtn').textContent;
+            document.getElementById('copyBtn').textContent = 'Copied!';
+            setTimeout(() => { document.getElementById('copyBtn').textContent = original; }, 1500);
+        } catch (err) {
+            alert('Failed to copy: ' + err);
+        }
+    });
+
+    // Generate 500 sample reviews
+    document.getElementById('generateSamplesBtn').addEventListener('click', () => {
+        const reviews = [];
+        const startDate = new Date('2024-01-01');
+        const endDate = new Date();
+        for (let i = 0; i < 500; i++) {
+            const randomDate = new Date(startDate.getTime() + Math.random() * (endDate.getTime() - startDate.getTime()));
+            const carMake = carMakes[Math.floor(Math.random()*carMakes.length)];
+            const carModel = carModels[carMake][Math.floor(Math.random()*carModels[carMake].length)];
+            const serviceType = serviceTypes[Math.floor(Math.random()*serviceTypes.length)];
+            const technician = technicianNames[Math.floor(Math.random()*technicianNames.length)];
+            const feedback = feedbackOptions[Math.floor(Math.random()*feedbackOptions.length)];
+            const carComment = carComments[Math.floor(Math.random()*carComments.length)];
+            const rating = Math.floor(Math.random()*2) + 4; // 4 or 5 mostly
+            const reviewText = generateReviewText({
+                customerName: generateRandomName(),
+                carMake,
+                carModel,
+                service: serviceType,
+                technician,
+                rating,
+                comments: feedback
+            });
+            reviews.push({id: Date.now()+i, timestamp: randomDate.toISOString(), customerName: generateRandomName(), carMake, carModel, service: serviceType, technician, rating, feedback, comments: feedback, reviewText});
+        }
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(reviews));
+        alert('Generated 500 sample reviews successfully!');
+        document.getElementById('samplesOutput').innerHTML = `<p><strong>500 sample reviews generated and stored.</strong> Click "Load First 20 Samples" to view a preview.</p>`;
+    });
+
+    // Load first 20 samples
+    document.getElementById('loadSamplesBtn').addEventListener('click', () => {
+        const reviews = getReviews();
+        if (reviews.length === 0) { alert('No reviews stored yet. Generate samples first.'); return; }
+        const toShow = reviews.slice(0,20);
+        let html = '';
+        toShow.forEach((r, idx) => {
+            html += `<div class="sample-item"><strong>${idx+1}.</strong> ${r.customerName} – ${r.carMake} ${r.carModel} – ${r.service} – ${r.rating}/5${r.technician ? ` – Tech: ${r.technician}` : ''}<br>${r.reviewText}</div>`;
+        });
+        document.getElementById('samplesOutput').innerHTML = html;
+    });
+
+    // Init
+    initStorage();
+</script>
 </body>
 </html>
