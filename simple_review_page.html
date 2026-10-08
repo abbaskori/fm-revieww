@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>First Motors Shela - Share Your Experience</title>
+    <style>
+        /* Apple-inspired design with red/white/black theme */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background-color: #ffffff;
+            color: #1d1d1f;
+            line-height: 1.5;
+            padding: 20px;
+            max-width: 600px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #e5e5e5;
+        }
+        
+        .logo {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #ff3b30, #ff9500);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 24px;
+            color: white;
+            font-weight: bold;
+        }
+        
+        h1 {
+            color: #1d1d1f;
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+        
+        .subtitle {
+            color: #86868b;
+            font-size: 17px;
+        }
+        
+        .review-container {
+            background: #f8f9fa;
+            border-radius: 16px;
+            padding: 24px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .review-text {
+            background: white;
+            border: 1px solid #e5e5e5;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+            font-family: 'SF Mono', Monaco, 'Courier New', monospace;
+            white-space: pre-wrap;
+            word-break: break-word;
+            line-height: 1.5;
+            flex-grow: 1;
+            overflow-y: auto;
+            max-height: 300px;
+        }
+        
+        .btn {
+            background: linear-gradient(135deg, #ff3b30, #ff9500);
+            color: white;
+            border: none;
+            padding: 16px 24px;
+            font-size: 17px;
+            font-weight: 600;
+            border-radius: 12px;
+            cursor: pointer;
+            width: 100%;
+            transition: all 0.2s ease;
+            letter-spacing: -0.5px;
+            margin-top: 10px;
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 16px rgba(255, 59, 48, 0.3);
+        }
+        
+        .btn:active {
+            transform: translateY(0);
+        }
+        
+        .btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        .success-message {
+            display: none;
+            background: #fff5f5;
+            border: 1px solid #ffdcdc;
+            border-radius: 12px;
+            padding: 16px;
+            margin-top: 16px;
+            text-align: center;
+        }
+        
+        .success-message h3 {
+            color: #ff3b30;
+            font-size: 18px;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        
+        .success-message h3::before {
+            content: '✓';
+            width: 20px;
+            height: 20px;
+            background-color: #ff3b30;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: bold;
+        }
+        
+        .success-message p {
+            color: #1d1d1f;
+            font-size: 15px;
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: auto;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+            font-size: 14px;
+            color: #718096;
+        }
+        
+        /* Instructions */
+        .instructions {
+            background: #f0f7ff;
+            border: 1px solid #dbe4ff;
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 20px;
+            font-size: 14px;
+            color: #1d1d1f;
+        }
+        
+        .instructions h3 {
+            color: #0066cc;
+            font-size: 16px;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        
+        .instructions h3::before {
+            content: 'ℹ️';
+            font-size: 18px;
+        }
+        
+        .instructions ol {
+            padding-left: 20px;
+        }
+        
+        .instructions li {
+            margin-bottom: 8px;
+            line-height: 1.4;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="logo">FM</div>
+            <h1>First Motors Shela</h1>
+            <p class="subtitle">Premium Auto Care • Shela, Ahmedabad</p>
+        </div>
+        
+        <div class="instructions">
+            <h3>How to Leave a Review:</h3>
+            <ol>
+                <li>Read the review below</li>
+                <li>Tap "Copy Review" to copy it to your clipboard</li>
+                <li>You'll be redirected to Google Maps to paste and submit your review</li>
+            </ol>
+        </div>
+        
+        <div class="review-container">
+            <div class="review-text" id="reviewText">
+★★★★★ Excellent Service at First Motors Shela
+
+I recently visited First Motors Shela for PPF installation and ceramic coating on my Hyundai Creta, and I'm extremely impressed with the service quality. Rajesh helped me choose between XPEL and Garware PPF options - I went with the ultimate plus full body package, and the finish is absolutely flawless with invisible edges and incredible hydrophobic properties.
+
+The ceramic coating application was thorough and professional, making washing my car effortless. What really stood out was the transparent pricing - no hidden charges or surprise fees. The facility was clean and comfortable, and the staff was knowledgeable about all the premium brands they use.
+
+I also had my periodic service done during the same visit, and everything was handled efficiently. First Motors Shela has definitely become my go-to for all premium car care needs in the Shela area. Highly recommend their PPF installation, ceramic coating, and general maintenance services!
+            </div>
+            <button class="btn" id="copyBtn">Copy Review</button>
+        </div>
+        
+        <div class="success-message" id="successMessage">
+            <h3>Review Copied!</h3>
+            <p>Redirecting to Google Maps...</p>
+        </div>
+        
+        <div class="footer">
+            First Motors Shela • Opposite Orchid Blues Residency, Shela, Ahmedabad<br>
+            © 2025 First Motors Shela. All rights reserved.
+        </div>
+    </div>
+
+    <script>
+        // Elements
+        const reviewText = document.getElementById('reviewText');
+        const copyBtn = document.getElementById('copyBtn');
+        const successMessage = document.getElementById('successMessage');
+        
+        // Google Maps review URL using the Place ID from the provided URL
+        const googleReviewUrl = "https://search.google.com/local/writereview?placeid=ChIJ8XMuPACbXjkRGooqnFfuFco";
+        
+        // Copy review to clipboard and redirect
+        copyBtn.addEventListener('click', async () => {
+            try {
+                // Show loading state
+                copyBtn.disabled = true;
+                copyBtn.textContent = 'Copying...';
+                
+                // Copy the review text to clipboard
+                await navigator.clipboard.writeText(reviewText.textContent);
+                
+                // Show success message
+                copyBtn.style.display = 'none';
+                successMessage.style.display = 'block';
+                
+                // Redirect to Google Maps after a brief delay
+                setTimeout(() => {
+                    window.location.href = googleReviewUrl;
+                }, 1500);
+                
+            } catch (err) {
+                console.error('Failed to copy: ', err);
+                alert('Failed to copy review. Please try again or select the text manually to copy.');
+                copyBtn.disabled = false;
+                copyBtn.textContent = 'Copy Review';
+            }
+        });
+        
+        // Also allow clicking on the review text to select it for manual copying
+        reviewText.addEventListener('click', function() {
+            // Select the text inside the div
+            const selection = window.getSelection();
+            const range = document.createRange();
+            range.selectNodeContents(reviewText);
+            selection.removeAllRanges();
+            selection.addRange(range);
+            
+            // Show visual feedback
+            reviewText.style.backgroundColor = '#e3f2fd';
+            setTimeout(() => {
+                reviewText.style.backgroundColor = 'white';
+            }, 1500);
+        });
+    </script>
+</body>
+</html>
