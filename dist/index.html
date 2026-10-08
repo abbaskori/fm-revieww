@@ -12,7 +12,6 @@
         <div class="logo">FM</div>
         <h1>First Motors Shela</h1>
         <p class="subtitle">Review QR Generator</p>
-        <button class="btn btn-secondary" id="toggleAI">AI Review Generator</button>
     </div>
 
     <!-- Staff Input Form -->
@@ -64,33 +63,7 @@
         </div>
         <button class="btn" id="generateBtn">Generate Review & QR Code</button>
     </div>
-    <!-- AI Review Generator Section -->
-    <div class="section ai-section hidden" id="aiSection">
-        <h3>AI-Powered SEO Review Generator</h3>
-        <div class="ai-prompt-examples">
-            <h4>Example AI Prompts:</h4>
-            <ul>
-                <li>"emphasize the professionalism and transparency of pricing"</li>
-                <li>"mention the quality of PPF installation and long-term benefits"</li>
-                <li>"focus on the ceramic coating's hydrophobic properties and ease of maintenance"</li>
-                <li>"highlight the attention to detail in denting and painting work"</li>
-                <li>"note the friendly staff and comfortable waiting area"</li>
-            </ul>
-        </div>
-        <div class="form-group">
-            <label for="aiReviewPrompt">Describe what you want the AI to focus on:</label>
-            <textarea id="aiReviewPrompt" rows="3" placeholder="e.g., 'Highlight the excellent customer service and mention specific staff members who helped'"></textarea>
-        </div>
-        <div class="ai-controls">
-            <button class="btn btn-ai" id="generateAIReview">Generate SEO Review with AI</button>
-            <div class="status-indicator status-ready" id="aiGenerateStatus">Ready</div>
-        </div>
-        <div class="ai-preview" id="aiPreview">
-            <h4>Generated Preview:</h4>
-            <div id="aiGeneratedContent" style="white-space: pre-wrap; word-break: break-word; min-height: 80px;"></div>
-        </div>
-        <button class="btn" id="useAIReview">Use This AI Review</button>
-    </div>
+
 
 <!-- QR Code Display (Staff view) -->
 <div class="qr-container hidden" id="qrDisplay">
@@ -475,113 +448,10 @@
     // Initialize
     init();
 
-    // AI Review Generation
-    document.getElementById('generateAIReview').addEventListener('click', async () => {
-        const aiPrompt = document.getElementById('aiReviewPrompt').value.trim();
-        if (!aiPrompt) { alert('Please enter an AI prompt'); return; }
-        
-        // Update status
-        document.getElementById('aiGenerateStatus').textContent = 'Generating...';
-        document.getElementById('aiGenerateStatus').className = 'status-indicator status-generating';
-        
-        try {
-            // Simulate AI processing delay
-            await new Promise(resolve => setTimeout(resolve, 1500));
-            
-            // Create base data for AI enhancement (we'll use dummy data for preview)
-            const baseData = {
-                customerName: "Valued Customer",
-                carMake: "Toyota",
-                carModel: "Fortuner",
-                service: "PPF Installation",
-                technician: "Expert Technician",
-                rating: 5,
-                comments: "Great service experience"
-            };
-            
-            // Generate SEO-optimized review with AI focus (reuse existing function)
-            const aiReview = generateSEOOptimizedReview(baseData, aiPrompt);
-            
-            // Display preview
-            document.getElementById('aiGeneratedContent').textContent = aiReview;
-            
-            // Update status
-            document.getElementById('aiGenerateStatus').textContent = 'Ready';
-            document.getElementById('aiGenerateStatus').className = 'status-indicator status-ready';
-            
-        } catch (error) {
-            document.getElementById('aiGenerateStatus').textContent = 'Error';
-            document.getElementById('aiGenerateStatus').className = 'status-indicator status-error';
-            alert('Error generating AI review: ' + error.message);
-        }
-    });
-
-    // Use AI Review button
-    document.getElementById('useAIReview').addEventListener('click', () => {
-        const aiReview = document.getElementById('aiGeneratedContent').textContent;
-        if (!aiReview) { alert('No AI review generated yet'); return; }
-        
-        // Switch to staff form and populate with AI-generated content concepts
-        document.getElementById('aiSection').classList.add('hidden');
-        document.getElementById('staffFormSection').classList.remove('hidden');
-        
-        // Extract information from AI review to populate form (simplified)
-        document.getElementById('customerName').value = "AI Generated Customer";
-        document.getElementById('carMake').value = "Toyota";
-        document.getElementById('carModel').value = "Fortuner";
-        document.getElementById('technician').value = "Expert Technician";
-        document.getElementById('rating').value = "5";
-        document.getElementById('comments').value = "AI-generated review based on your specifications";
-        
-        // Update AI prompt to show what was used
-        document.getElementById('aiPrompt').value = document.getElementById('aiReviewPrompt').value;
-    });
-
-    // Enhance with AI button (for manual form)
-    document.getElementById('enhanceWithAI').addEventListener('click', async () => {
-        const aiPrompt = document.getElementById('aiPrompt').value.trim();
-        if (!aiPrompt) { alert('Please enter an AI enhancement prompt'); return; }
-        
-        // Update status
-        document.getElementById('aiStatus').textContent = 'Enhancing...';
-        document.getElementById('aiStatus').className = 'status-indicator status-generating';
-        
-        try {
-            // Simulate AI processing delay
-            await new Promise(resolve => setTimeout(resolve, 1000));
-            
-            // Just update status for demo - in reality would enhance the current form data
-            document.getElementById('aiStatus').textContent = 'Enhanced!';
-            document.getElementById('aiStatus').className = 'status-indicator status-ready';
-        
-            // Show temporary success message
-            const originalText = document.getElementById('aiStatus').textContent;
-            setTimeout(() => {
-                document.getElementById('aiStatus').textContent = originalText;
-                document.getElementById('aiStatus').className = 'status-indicator status-ready';
-            }, 2000);
-            
-        } catch (error) {
-            document.getElementById('aiStatus').textContent = 'Error';
-            document.getElementById('aiStatus').className = 'status-indicator status-error';
-            alert('Error enhancing review: ' + error.message);
-        }
-    });
 
 
-    // Toggle AI section
-    document.getElementById('toggleAI').addEventListener('click', () => {
-        document.getElementById('aiSection').classList.toggle('hidden');
-        if (!document.getElementById('aiSection').classList.contains('hidden')) {
-            document.getElementById('toggleAI').textContent = 'Hide AI';
-            // Hide other sections
-            document.getElementById('staffForm').classList.add('hidden');
-            document.getElementById('qrDisplay').classList.add('hidden');
-            document.getElementById('reviewView').classList.add('hidden');
-        } else {
-            document.getElementById('toggleAI').textContent = 'AI Review Generator';
-        }
-    });
+
+
     
     // Back to form button from QR display
     document.getElementById('backToForm').addEventListener('click', () => {
