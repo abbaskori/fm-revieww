@@ -571,6 +571,9 @@
     // Update the toggleAI listener to hide other sections when showing the AI section, and show the staff form when hiding.
     document.getElementById('toggleAI').addEventListener('click', function() {
         const aiSection = document.getElementById('aiSection');
+        // Toggle the AI section visibility
+        aiSection.classList.toggle('hidden');
+        
         if (!aiSection.classList.contains('hidden')) {
             // AI section is being shown, hide others
             document.getElementById('staffForm').classList.add('hidden');
