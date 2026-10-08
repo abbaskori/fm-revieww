@@ -47,7 +47,7 @@
         const downloadBtn = document.getElementById('downloadBtn');
         
         // The URL that the QR code should point to
-        const targetUrl = "http://localhost:8081/simple_review_page.html";
+        const targetUrl = window.location.origin + "/simple_review_page.html";
         
         // Display the URL
         urlDisplay.textContent = targetUrl;
