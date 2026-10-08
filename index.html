@@ -167,11 +167,14 @@
     </div>
 
 <!-- QR Code Display (Staff view) -->
-    <div class="qr-container hidden" id="qrDisplay">
+<div class="qr-container hidden" id="qrDisplay">
+    <div class="qr-header">
+        <button class="btn btn-secondary" id="backToForm">← Back to Form</button>
         <h3>Scan this QR code with customer's phone</h3>
-        <div id="qrCode"></div>
-        <p class="subtitle">Customer will see the review, copy it, and be redirected to Google Maps</p>
     </div>
+    <div id="qrCode"></div>
+    <p class="subtitle">Customer will see the review, copy it, and be redirected to Google Maps</p>
+</div>
 
     <!-- Customer Review View -->
     <div class="review-section hidden" id="reviewView">
@@ -624,8 +627,8 @@
             // Just update status for demo - in reality would enhance the current form data
             document.getElementById('aiStatus').textContent = 'Enhanced!';
             document.getElementById('aiStatus').className = 'status-indicator status-ready';
-            
-            # Show temporary success message
+        
+            // Show temporary success message
             const originalText = document.getElementById('aiStatus').textContent;
             setTimeout(() => {
                 document.getElementById('aiStatus').textContent = originalText;
@@ -652,6 +655,12 @@
         } else {
             document.getElementById('toggleAI').textContent = 'AI Review Generator';
         }
+    });
+    
+    // Back to form button from QR display
+    document.getElementById('backToForm').addEventListener('click', () => {
+        document.getElementById('qrDisplay').classList.add('hidden');
+        document.getElementById('staffForm').classList.remove('hidden');
     });
 
 </script>
