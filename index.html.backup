@@ -240,6 +240,7 @@
             document.getElementById('reviewView').classList.add('hidden');
             document.getElementById('samplesSection').classList.add('hidden');
             document.getElementById('toggleAdmin').classList.remove('hidden');
+            document.getElementById('aiSection').classList.add('hidden');
         }
     }
 
@@ -528,7 +529,20 @@
 
     
     // AI Review Generator JavaScript
+    function generateAIReview(data, prompt) {
+        let review = '★★★★★ ' + data.customerName + "'s Review\\n\\n";
+        review += 'Service: ' + data.service + '\\n';
+        review += 'Car: ' + data.carMake + ' ' + data.carModel + '\\n';
+        if (data.technician) review += 'Technician: ' + data.technician + '\\n';
+        review += 'Rating: ' + data.rating + '/5\\n';
+        if (data.comments) review += 'Comments: ' + data.comments + '\\n';
+        review += '\\nFirst Motors Shela provided excellent premium service including PPF Installation, Ceramic Coating, Denting Painting, and Periodic Service using top brands like XPEL, Garware, GYEON, Gtechniq, and Glasurit. Highly recommend! #FirstMotorsShela\\n\\nFirst Motors Shela • Opposite Orchid Blues Residency, Shela, Ahmedabad\\n#FirstMotorsShela #PPFInstallation #CeramicCoating #DentingPainting #PeriodicService #AutomotiveCare #Ahmedabad #CarCare\\n\\nThe customer specifically requested: ' + prompt;
+        return review;
+    }
 
+    document.getElementById('generateAIReview').addEventListener('click', async () => {
+        const aiPrompt = document.getElementById('aiReviewPrompt').value.trim();
+        if (!aiPrompt) { alert('Please enter an AI prompt'); return; }
 
         // Update status
         document.getElementById('aiGenerateStatus').textContent = 'Generating...';
@@ -557,6 +571,7 @@
                 comments
             };
 
+            const aiReview = generateAIReview(data, aiPrompt);
 
             // Display preview
             document.getElementById('aiGeneratedContent').textContent = aiReview;
@@ -572,6 +587,9 @@
         }
     });
 
+    document.getElementById('useAIReview').addEventListener('click', () => {
+        const aiReview = document.getElementById('aiGeneratedContent').textContent;
+        if (!aiReview) { alert('No AI review generated yet'); return; }
 
         // Generate QR code for the AI review
         const baseUrl = window.location.origin + window.location.pathname;
@@ -586,6 +604,7 @@
         qrContainer.appendChild(qrImg);
 
         // Show QR code section and hide AI section
+        document.getElementById('aiSection').classList.add('hidden');
         document.getElementById('qrDisplay').classList.remove('hidden');
     });
 
@@ -593,9 +612,21 @@
     document.getElementById('backToForm').addEventListener('click', () => {
         document.getElementById('qrDisplay').classList.add('hidden');
         document.getElementById('staffForm').classList.remove('hidden');
+        document.getElementById('aiSection').classList.add('hidden'); // hide AI section when going back to form
     });
 
     // Update the toggleAI listener to hide other sections when showing the AI section, and show the staff form when hiding.
+    document.getElementById('toggleAI').addEventListener('click', function() {
+        const aiSection = document.getElementById('aiSection');
+        // Toggle the AI section visibility
+        aiSection.classList.toggle('hidden');
+        
+        if (!aiSection.classList.contains('hidden')) {
+            // AI section is being shown, hide others
+            document.getElementById('staffForm').classList.add('hidden');
+            document.getElementById('qrDisplay').classList.add('hidden');
+            document.getElementById('reviewView').classList.add('hidden');
+        } else {
             // AI section is being hidden, show the staff form (assuming we came from the staff form)
             document.getElementById('staffForm').classList.remove('hidden');
             document.getElementById('qrDisplay').classList.add('hidden');
